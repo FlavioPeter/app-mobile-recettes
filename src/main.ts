@@ -23,9 +23,15 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+/* Virtual Scroller */
+import VueVirtualScroller from 'vue-virtual-scroller'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
+
+
 const app = createApp(App)
   .use(IonicVue)
-  .use(router);
+  .use(router)
+  .use(VueVirtualScroller);
   
 router.isReady().then(() => {
   app.mount('#app');
