@@ -1,7 +1,7 @@
 <template>
   <ion-app>
     <ion-split-pane content-id="main-content">
-      <MenuComp />
+      <MenuComp :categories="categories" />
       <ion-router-outlet id="main-content"></ion-router-outlet>
     </ion-split-pane>
   </ion-app>
@@ -11,15 +11,20 @@ import {
   IonApp,
   IonRouterOutlet,
   IonSplitPane,
-  IonContent,
-  IonList,
-  IonListHeader,
-  IonItem,
-  IonLabel,
-  IonMenu,
-  IonMenuToggle,
-  IonIcon,
+  onIonViewWillEnter,
 } from "@ionic/vue";
-import { logoTux } from "ionicons/icons";
 import MenuComp from "@/components/MenuComp.vue";
+import { onMounted, ref } from "vue";
+
+const categories = ref([]);
+
+async function getCategories() {
+  return fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
+    .then((rawData) => rawData.json())
+    .then((data) => data.categories);
+}
+
+onMounted(async () => {
+  categories.value = await getCategories();
+});
 </script>

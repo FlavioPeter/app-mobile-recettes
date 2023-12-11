@@ -2,15 +2,23 @@
   <ion-menu content-id="main-content" type="overlay">
     <ion-content>
       <ion-list>
-        <ion-list-header>Mon menu</ion-list-header>
+        <h1>Mes recettes</h1>
+        <p>202197834@CollegeAhuntsic.qc.ca</p>
+        <p>Bienvenue, Flavio Weinstein Silva</p>
         <ion-menu-toggle auto-hide="false">
           <ion-item>
             <ion-icon slot="start" :icon="logoTux" :md="logoTux"></ion-icon>
-            <ion-label>Page 1</ion-label>
+            <ion-label>Accueil</ion-label>
           </ion-item>
-          <ion-item>
-            <ion-icon slot="start" :icon="logoTux" :md="logoTux"></ion-icon>
-            <ion-label>Page 2</ion-label>
+          <ion-item
+            v-for="c in categories"
+            :href="'list/' + c.strCategory"
+            :key="c.idCategory"
+          >
+            <ion-thumbnail slot="start">
+              <img :src="c.strCategoryThumb" alt="" />
+            </ion-thumbnail>
+            <ion-label>{{ c.strCategory }}</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
@@ -31,6 +39,22 @@ import {
   IonMenu,
   IonMenuToggle,
   IonIcon,
+  IonHeader,
+  IonThumbnail,
+  onIonViewWillEnter,
 } from "@ionic/vue";
 import { logoTux } from "ionicons/icons";
+
+defineProps({
+  categories: {
+    type: Object,
+    required: true,
+  },
+});
 </script>
+
+<style>
+img {
+  border-radius: 100%;
+}
+</style>

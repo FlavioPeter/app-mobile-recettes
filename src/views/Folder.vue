@@ -1,42 +1,7 @@
 <template>
   <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-button shape="round">
-            <ion-menu-button auto-hide="falser"></ion-menu-button>
-          </ion-button>
-        </ion-buttons>
-        <ion-title>Blank</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Blank</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>
-          Start with Ionic
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://ionicframework.com/docs/components"
-            >UI Components</a
-          >
-        </p>
-      </div>
-    </ion-content>
-
-    <ion-footer>
-      <ion-toolbar color="secondary">
-        <ion-title size="small">&copy;Flavio Peter Weinstein Silva</ion-title>
-      </ion-toolbar>
-    </ion-footer>
+    <HeaderComp />
+    <RecipeDisplayComp :recipe="recipe" />
   </ion-page>
 </template>
 
@@ -52,7 +17,44 @@ import {
   IonIcon,
   IonImg,
   IonMenuButton,
+  onIonViewWillEnter,
 } from "@ionic/vue";
+
+import RecipeDisplayComp from "@/components/RecipeDisplayComp.vue";
+import HeaderComp from "@/components/HeaderComp.vue";
+import { reactive } from "vue";
+
+const recipe = reactive({
+  imageUrl: null,
+  name: null,
+  origin: null,
+  category: null,
+});
+
+async function getRandomRecipe() {
+  fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+    .then((rawData) => rawData.json())
+    .then((data) => data.meals[0])
+    .then((meal) => {
+      recipe.imageUrl = meal.strMealThumb;
+      recipe.name = meal.strMeal;
+      recipe.origin = meal.strArea;
+      recipe.category = meal.strCategory;
+
+      for (let i = 1; i <= 20; i++) {
+        if (meal["strIngredient" + i].trim() === "") {
+          recipe.nIngredients = i - 1;
+          break;
+        }
+        recipe["ingredient" + i] = meal["strIngredient" + i];
+        recipe["measure" + i] = meal["strMeasure" + i];
+      }
+    });
+}
+
+onIonViewWillEnter(async () => {
+  getRandomRecipe();
+});
 </script>
 
 <style scoped>

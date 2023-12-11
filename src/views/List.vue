@@ -1,42 +1,10 @@
 <template>
   <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-button shape="round">
-            <ion-menu-button auto-hide="falser"></ion-menu-button>
-          </ion-button>
-        </ion-buttons>
-        <ion-title>Blank</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <HeaderComp />
 
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Blank</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>
-          Start with Ionic
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://ionicframework.com/docs/components"
-            >UI Components</a
-          >
-        </p>
-      </div>
+      <ListComp :recipes="recipes" />
     </ion-content>
-
-    <ion-footer>
-      <ion-toolbar color="secondary">
-        <ion-title size="small">&copy;Flavio Peter Weinstein Silva</ion-title>
-      </ion-toolbar>
-    </ion-footer>
   </ion-page>
 </template>
 
@@ -52,7 +20,29 @@ import {
   IonIcon,
   IonImg,
   IonMenuButton,
+  onIonViewWillEnter,
 } from "@ionic/vue";
+
+import HeaderComp from "@/components/HeaderComp.vue";
+import ListComp from "@/components/ListtComp.vue";
+import { ref } from "vue";
+import { useRoute } from "vue-router";
+
+const recipes = ref([]);
+const route = useRoute();
+
+async function getRecipesCategories() {
+  return fetch(
+    "https://www.themealdb.com/api/json/v1/1/filter.php?c=" +
+      route.params.category
+  )
+    .then((rawData) => rawData.json())
+    .then((data) => data.categories);
+}
+
+onIonViewWillEnter(async () => {
+  recipes.value = await getRecipesCategories();
+});
 </script>
 
 <style scoped>

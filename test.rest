@@ -1,0 +1,13 @@
+GET www.themealdb.com/api/json/v1/1/random.php
+
+###
+
+GET www.themealdb.com/api/json/v1/1/lookup.php?i=53025
+
+###
+
+GET www.themealdb.com/api/json/v1/1/categories.php
+
+###
+
+GET www.themealdb.com/api/json/v1/1/filter.php?c=Seafood

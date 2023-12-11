@@ -1,14 +1,17 @@
 <template>
   <ion-header :translucent="true">
     <ion-toolbar id="appHeader" color="primary">
-      <ion-buttons v-show="true" slot="start">
-        <ion-menu-button auto-hide="false"></ion-menu-button>
-      </ion-buttons>
-      <ion-buttons v-show="true" slot="start">
+      <ion-buttons v-if="$route.name == 'Detail'" slot="start">
         <ion-back-button default-href="/list" />
       </ion-buttons>
-      <ion-title size="large">{{
-        $route.name == "Detail" ? "Recette du moment" : "Category"
+      <ion-buttons v-else slot="start">
+        <ion-menu-button auto-hide="false"></ion-menu-button>
+      </ion-buttons>
+      <ion-title v-if="$route.name == 'List'" size="large">{{
+        $route.params.category
+      }}</ion-title>
+      <ion-title v-else size="large">{{
+        $route.name == "Folder" ? "Recette du moment" : "Recette"
       }}</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -24,13 +27,6 @@ import {
   IonBackButton,
   IonMenuButton,
 } from "@ionic/vue";
-
-defineProps({
-  pageOrigin: {
-    type: String,
-    required: true,
-  },
-});
 </script>
   
   <style scoped>
