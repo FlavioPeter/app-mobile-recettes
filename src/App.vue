@@ -17,13 +17,11 @@ import {
 import MenuComp from "@/components/MenuComp.vue";
 import { onMounted, ref } from "vue";
 
-const categories = ref([]);
+import { useRecipesAgiGet } from "@/services/recipesApiGet";
 
-async function getCategories() {
-  return fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
-    .then((rawData) => rawData.json())
-    .then((data) => data.categories);
-}
+const { getCategories } = useRecipesAgiGet();
+
+const categories = ref([]);
 
 onMounted(async () => {
   const loading = await loadingController.create({

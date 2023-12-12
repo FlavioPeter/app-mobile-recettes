@@ -27,28 +27,12 @@ import HeaderComp from "@/components/HeaderComp.vue";
 import ListComp from "@/components/ListComp.vue";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
+import { useRecipesAgiGet } from "@/services/recipesApiGet";
+
+const { getRecipesOfCategory } = useRecipesAgiGet();
 
 const recipes = ref([]);
 const route = useRoute();
-
-async function getRecipesCategories() {
-  return fetch(
-    "https://www.themealdb.com/api/json/v1/1/filter.php?c=" +
-      route.params.category
-  )
-    .then((rawData) => rawData.json())
-    .then((data) => data.meals);
-}
-
-// async function waitToLoad(callback) {
-//   const loading = await loadingController.create({
-//     message: "Attendre SVP...",
-//   });
-
-//   await loading.present();
-//   await callback();
-//   loading.dismiss();
-// }
 
 onIonViewWillEnter(async () => {
   const loading = await loadingController.create({
@@ -56,7 +40,7 @@ onIonViewWillEnter(async () => {
   });
 
   await loading.present();
-  recipes.value = await getRecipesCategories();
+  recipes.value = await getRecipesOfCategory(route.params.category);
   loading.dismiss();
 });
 </script>
