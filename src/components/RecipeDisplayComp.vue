@@ -1,18 +1,18 @@
 <template>
-  <ion-content>
-    <ion-img :src="recipe.imageUrl" style="width: 90%; margin: auto"></ion-img>
-    <ion-label size="large">{{ recipe.name || "recipe name" }}</ion-label>
-    <ul>
-      <li>Origine: {{ recipe.origin || "recipe origin" }}</li>
-      <li>Catégorie: {{ recipe.category || "recipe category" }}</li>
-    </ul>
-    <ion-label size="large">Ingrédients</ion-label>
-    <ul>
-      <li v-for="i in recipe.nIngredients" :key="i">
-        {{ recipe["measure" + i] }} {{ recipe["ingredient" + i] }}
-      </li>
-    </ul>
-  </ion-content>
+  <ion-img :src="recipe.imageUrl" style="width: 90%; margin: auto"></ion-img>
+  <h3>{{ recipe.name || "recipe name" }}</h3>
+  <ul id="non-decorated">
+    <li><strong>Origine:</strong> {{ recipe.origin || "recipe origin" }}</li>
+    <li>
+      <strong>Catégorie:</strong> {{ recipe.category || "recipe category" }}
+    </li>
+  </ul>
+  <h3>Ingrédients</h3>
+  <ul>
+    <li v-for="i in recipe.nIngredients" :key="i">
+      {{ recipe["measure" + i] }} {{ recipe["ingredient" + i] }}
+    </li>
+  </ul>
 </template>
 
 <script setup>
@@ -39,5 +39,8 @@ defineProps({
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+#non-decorated {
+  list-style: none;
+}
 </style>

@@ -11,6 +11,7 @@ import {
   IonApp,
   IonRouterOutlet,
   IonSplitPane,
+  loadingController,
   onIonViewWillEnter,
 } from "@ionic/vue";
 import MenuComp from "@/components/MenuComp.vue";
@@ -25,6 +26,12 @@ async function getCategories() {
 }
 
 onMounted(async () => {
+  const loading = await loadingController.create({
+    message: "Attendre SVP...",
+  });
+
+  await loading.present();
   categories.value = await getCategories();
+  loading.dismiss();
 });
 </script>

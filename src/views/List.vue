@@ -1,7 +1,6 @@
 <template>
   <ion-page>
     <HeaderComp />
-
     <ion-content :fullscreen="true">
       <ListComp :recipes="recipes" />
     </ion-content>
@@ -20,11 +19,12 @@ import {
   IonIcon,
   IonImg,
   IonMenuButton,
+  loadingController,
   onIonViewWillEnter,
 } from "@ionic/vue";
 
 import HeaderComp from "@/components/HeaderComp.vue";
-import ListComp from "@/components/ListtComp.vue";
+import ListComp from "@/components/ListComp.vue";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 
@@ -37,40 +37,36 @@ async function getRecipesCategories() {
       route.params.category
   )
     .then((rawData) => rawData.json())
-    .then((data) => data.categories);
+    .then((data) => data.meals);
 }
 
+// async function waitToLoad(callback) {
+//   const loading = await loadingController.create({
+//     message: "Attendre SVP...",
+//   });
+
+//   await loading.present();
+//   await callback();
+//   loading.dismiss();
+// }
+
 onIonViewWillEnter(async () => {
+  const loading = await loadingController.create({
+    message: "Attendre SVP...",
+  });
+
+  await loading.present();
   recipes.value = await getRecipesCategories();
+  loading.dismiss();
 });
 </script>
 
 <style scoped>
-#container {
+ion-content {
   text-align: center;
 
   position: absolute;
   left: 0;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
 }
 </style>

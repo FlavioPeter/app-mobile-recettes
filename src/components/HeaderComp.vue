@@ -2,7 +2,7 @@
   <ion-header :translucent="true">
     <ion-toolbar id="appHeader" color="primary">
       <ion-buttons v-if="$route.name == 'Detail'" slot="start">
-        <ion-back-button default-href="/list" />
+        <ion-back-button :default-href="/list/ + category" />
       </ion-buttons>
       <ion-buttons v-else slot="start">
         <ion-menu-button auto-hide="false"></ion-menu-button>
@@ -22,11 +22,17 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonButton,
   IonButtons,
   IonBackButton,
   IonMenuButton,
 } from "@ionic/vue";
+
+defineProps({
+  category: {
+    type: String,
+    required: false,
+  },
+});
 </script>
   
   <style scoped>

@@ -6,7 +6,7 @@
         <p>202197834@CollegeAhuntsic.qc.ca</p>
         <p>Bienvenue, Flavio Weinstein Silva</p>
         <ion-menu-toggle auto-hide="false">
-          <ion-item>
+          <ion-item href="/folder/">
             <ion-icon slot="start" :icon="logoTux" :md="logoTux"></ion-icon>
             <ion-label>Accueil</ion-label>
           </ion-item>
