@@ -10,6 +10,7 @@ export function useRecipesAgiGet() {
         recipe.name = meal.strMeal;
         recipe.origin = meal.strArea;
         recipe.category = meal.strCategory;
+        recipe.instructions = meal.strInstructions;
 
         for (let i = 1; i <= 20; i++) {
           if (meal["strIngredient" + i].trim() === "") {
@@ -34,6 +35,7 @@ export function useRecipesAgiGet() {
         recipe.name = meal.strMeal;
         recipe.origin = meal.strArea;
         recipe.category = meal.strCategory;
+        recipe.instructions = meal.strInstructions;
 
         for (let i = 1; i <= 20; i++) {
           if (meal["strIngredient" + i].trim() === "") {

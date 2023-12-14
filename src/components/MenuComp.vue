@@ -7,7 +7,7 @@
         <p>Bienvenue, Flavio Weinstein Silva</p>
         <ion-menu-toggle auto-hide="false">
           <ion-item href="/folder/">
-            <ion-icon slot="start" :icon="logoTux" :md="logoTux"></ion-icon>
+            <ion-icon slot="start" :icon="home" :md="home"></ion-icon>
             <ion-label>Accueil</ion-label>
           </ion-item>
           <ion-item
@@ -16,7 +16,7 @@
             :key="c.idCategory"
           >
             <ion-thumbnail slot="start">
-              <img :src="c.strCategoryThumb" alt="" />
+              <img :src="c.strCategoryThumb" alt="meal cat" />
             </ion-thumbnail>
             <ion-label>{{ c.strCategory }}</ion-label>
           </ion-item>
@@ -28,22 +28,17 @@
 </template>
     <script setup lang="ts">
 import {
-  IonApp,
   IonRouterOutlet,
-  IonSplitPane,
   IonContent,
   IonList,
-  IonListHeader,
   IonItem,
   IonLabel,
   IonMenu,
   IonMenuToggle,
   IonIcon,
-  IonHeader,
   IonThumbnail,
-  onIonViewWillEnter,
 } from "@ionic/vue";
-import { logoTux } from "ionicons/icons";
+import { home } from "ionicons/icons";
 
 defineProps({
   categories: {
@@ -54,7 +49,15 @@ defineProps({
 </script>
 
 <style>
-img {
+img,
+ion-icon {
   border-radius: 100%;
+  width: 50px;
+}
+
+h1,
+p {
+  margin: 2px;
+  padding-top: 2px;
 }
 </style>

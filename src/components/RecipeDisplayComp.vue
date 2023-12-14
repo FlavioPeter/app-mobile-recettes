@@ -13,6 +13,8 @@
       {{ recipe["measure" + i] }} {{ recipe["ingredient" + i] }}
     </li>
   </ul>
+  <h3>Instructions</h3>
+  <p>{{ recipe.instructions || "recipe instructions" }}</p>
 </template>
 
 <script setup>
@@ -40,7 +42,11 @@ defineProps({
 </script>
 
 <style scoped>
-#non-decorated {
+#non-decorated,
+p,
+h3 {
   list-style: none;
+  padding-left: 10px;
+  padding-bottom: 10px;
 }
 </style>
