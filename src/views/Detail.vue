@@ -1,7 +1,6 @@
 <template>
   <ion-page>
     <HeaderComp :category="recipe.category" />
-
     <ion-content :fullscreen="true">
       <RecipeDisplayComp :recipe="recipe" />
     </ion-content>
@@ -11,15 +10,7 @@
 <script setup lang="ts">
 import {
   IonContent,
-  IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar,
-  IonButton,
-  IonButtons,
-  IonIcon,
-  IonImg,
-  IonMenuButton,
   loadingController,
   onIonViewWillEnter,
 } from "@ionic/vue";

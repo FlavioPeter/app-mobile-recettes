@@ -2,9 +2,11 @@
   <ion-menu content-id="main-content" type="overlay">
     <ion-content>
       <ion-list>
-        <h1>Mes recettes</h1>
-        <p>202197834@CollegeAhuntsic.qc.ca</p>
-        <p>Bienvenue, Flavio Weinstein Silva</p>
+        <div>
+          <h1>Mes recettes</h1>
+          <p>202197834@CollegeAhuntsic.qc.ca</p>
+          <p>Bienvenue, Flavio Weinstein Silva</p>
+        </div>
         <ion-menu-toggle auto-hide="false">
           <ion-item href="/folder/">
             <ion-icon slot="start" :icon="home" :md="home"></ion-icon>
@@ -59,5 +61,9 @@ h1,
 p {
   margin: 2px;
   padding-top: 2px;
+}
+
+div {
+  border: solid gray 1px;
 }
 </style>

@@ -14,24 +14,11 @@
     </li>
   </ul>
   <h3>Instructions</h3>
-  <p>{{ recipe.instructions || "recipe instructions" }}</p>
+  <p id="instructions">{{ recipe.instructions || "recipe instructions" }}</p>
 </template>
 
 <script setup>
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-  IonButton,
-  IonButtons,
-  IonIcon,
-  IonImg,
-  IonLabel,
-  IonMenuButton,
-  onIonViewWillEnter,
-} from "@ionic/vue";
+import { IonImg } from "@ionic/vue";
 
 defineProps({
   recipe: {
@@ -47,6 +34,10 @@ p,
 h3 {
   list-style: none;
   padding-left: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
+}
+
+#instructions{
+  padding-bottom: 30px;
 }
 </style>

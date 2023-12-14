@@ -12,7 +12,6 @@ import {
   IonRouterOutlet,
   IonSplitPane,
   loadingController,
-  onIonViewWillEnter,
 } from "@ionic/vue";
 import MenuComp from "@/components/MenuComp.vue";
 import { onMounted, ref } from "vue";
