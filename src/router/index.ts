@@ -7,17 +7,17 @@ import List from "../views/List.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    redirect: "/detail/:id",
-  },
-  {
-    path: "/detail/:id",
-    name: "Detail",
-    component: Detail,
+    redirect: "/folder",
   },
   {
     path: "/folder",
     name: "Folder",
     component: Folder,
+  },
+  {
+    path: "/detail/:id",
+    name: "Detail",
+    component: Detail,
   },
   {
     path: "/list/:category",
