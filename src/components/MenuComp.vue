@@ -2,24 +2,17 @@
   <ion-menu content-id="main-content" type="overlay">
     <ion-content>
       <ion-list>
-        <div>
+        <div id="border">
           <h1>Mes recettes</h1>
-          <p>202197834@CollegeAhuntsic.qc.ca</p>
-          <p>Bienvenue, Flavio Weinstein Silva</p>
+          <p>202197834@CollegeAhuntsic.qc.ca</p><p>Bienvenue, Flavio Weinstein Silva</p>
         </div>
         <ion-menu-toggle auto-hide="false">
           <ion-item href="/folder/">
             <ion-icon slot="start" :icon="home" :md="home"></ion-icon>
             <ion-label>Accueil</ion-label>
           </ion-item>
-          <ion-item
-            v-for="c in categories"
-            :href="'list/' + c.strCategory"
-            :key="c.idCategory"
-          >
-            <ion-thumbnail slot="start">
-              <img :src="c.strCategoryThumb" alt="meal cat" />
-            </ion-thumbnail>
+          <ion-item v-for="c in categories" :href="'list/' + c.strCategory" :key="c.idCategory">
+            <ion-thumbnail slot="start"><img :src="c.strCategoryThumb" alt="meal cat" /></ion-thumbnail>
             <ion-label>{{ c.strCategory }}</ion-label>
           </ion-item>
         </ion-menu-toggle>
@@ -28,7 +21,7 @@
   </ion-menu>
   <ion-router-outlet id="main-content"></ion-router-outlet>
 </template>
-    <script setup lang="ts">
+<script setup lang="ts">
 import {
   IonRouterOutlet,
   IonContent,
@@ -63,7 +56,7 @@ p {
   padding-top: 2px;
 }
 
-div {
+div#border {
   border: solid gray 1px;
 }
 </style>

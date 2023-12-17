@@ -14,15 +14,13 @@ import {
   loadingController,
   onIonViewWillEnter,
 } from "@ionic/vue";
-
 import HeaderComp from "@/components/HeaderComp.vue";
 import ListComp from "@/components/ListComp.vue";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
-import { useRecipesAgiGet } from "@/services/recipesApiGet";
+import { useRecipesApiGet } from "@/services/recipesApiGet";
 
-const { getRecipesOfCategory } = useRecipesAgiGet();
-
+const { getRecipesOfCategory } = useRecipesApiGet();
 const recipes = ref([]);
 const route = useRoute();
 

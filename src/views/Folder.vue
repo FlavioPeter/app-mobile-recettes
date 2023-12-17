@@ -18,10 +18,9 @@ import {
 import RecipeDisplayComp from "@/components/RecipeDisplayComp.vue";
 import HeaderComp from "@/components/HeaderComp.vue";
 import { ref } from "vue";
+import { useRecipesApiGet } from "@/services/recipesApiGet";
 
-import { useRecipesAgiGet } from "@/services/recipesApiGet";
-
-const { getRandomRecipe } = useRecipesAgiGet();
+const { getRandomRecipe } = useRecipesApiGet();
 
 const recipe = ref({
   imageUrl: null,

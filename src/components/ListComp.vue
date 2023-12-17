@@ -10,30 +10,7 @@
 </template>
   
   <script setup>
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-  IonFooter,
-  IonBackButton,
-  IonButtons,
-  IonLabel,
-  IonItem,
-  IonInput,
-  IonSelect,
-  IonSelectOption,
-  IonList,
-  IonIcon,
-  IonTabs,
-  IonTabButton,
-  alertController,
-  IonThumbnail,
-  IonImg,
-  onIonViewWillEnter,
-} from "@ionic/vue";
-import { onMounted, ref, watch } from "vue";
+import { IonLabel, IonItem, IonList } from "@ionic/vue";
 
 defineProps({
   recipes: {
@@ -41,8 +18,6 @@ defineProps({
     required: true,
   },
 });
-
-onIonViewWillEnter(() => {});
 </script>
   
   <style>

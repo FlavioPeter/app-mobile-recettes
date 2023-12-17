@@ -15,14 +15,14 @@ const routes: Array<RouteRecordRaw> = [
     component: Folder,
   },
   {
-    path: "/detail/:id",
-    name: "Detail",
-    component: Detail,
-  },
-  {
     path: "/list/:category",
     name: "List",
     component: List,
+  },
+  {
+    path: "/detail/:id",
+    name: "Detail",
+    component: Detail,
   },
 ];
 

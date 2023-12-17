@@ -15,11 +15,9 @@ import {
 } from "@ionic/vue";
 import MenuComp from "@/components/MenuComp.vue";
 import { onMounted, ref } from "vue";
+import { useRecipesApiGet } from "@/services/recipesApiGet";
 
-import { useRecipesAgiGet } from "@/services/recipesApiGet";
-
-const { getCategories } = useRecipesAgiGet();
-
+const { getCategories } = useRecipesApiGet();
 const categories = ref([]);
 
 onMounted(async () => {
